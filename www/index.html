@@ -1,0 +1,31 @@
+<html>
+    <head>
+	<title>lj2rss</title>
+	<link rel="stylesheet" href="style.css" />
+	<script src="md5.js"></script>
+	<script language="javascript">
+	    // TODO remove reference to lj2rss.net.ru
+	    var domain = 'lj2rss.net.ru';
+	    function generateLink() {
+		var _login = document.getElementById('login').value;
+		var _pass = document.getElementById('pass').value;
+		var _link = 'http://' + domain + '/friends.rss?login=' + _login + '&hash=' + MD5(_pass);
+		generated.innerHTML = 'To start reading your friends add the following link to your favorite RSS reader: <br /><a href="' + _link + '">' + _link + '</a>';
+	    }
+	</script>
+    </head>
+    <body>
+	<center>
+	    <div class="main">
+		<form>
+		    Login
+		    <input type="text" id="login" class="username" />
+		    Password
+		    <input type="password" id="pass" class="userpass" />
+		    <input type="button" class="btsubmit" value="Get it!" onClick="generateLink()" />
+		</form>
+	    </div>
+	    <div id="generated" />
+	</center>
+    </body>
+</html>

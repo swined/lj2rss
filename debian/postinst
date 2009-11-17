@@ -1,0 +1,5 @@
+#!/bin/sh
+
+chown root:www-data /var/cache/lj2rss
+chmod 770 /var/cache/lj2rss
+apache2ctl restart

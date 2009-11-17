@@ -1,0 +1,19 @@
+#!/bin/sh
+
+die() {
+    echo $*
+    exit 1
+}
+
+svn up || die up failed
+svn commit -m 'auto commit' || die commit failed
+REV=$(svn info -r HEAD | grep ^Revision: | awk '{ print $2 }')
+VER=0.0.1+svn$REV
+export DEBEMAIL='Alexey Alexandrov <swined@gmail.com>'
+dch -v $VER "svn revision $REV" || die dch failed
+svn commit -m 'auto commit' || die commit failed
+svn-buildpackage -rfakeroot -us -uc -b --svn-move || die build failed
+rm ../lj2rss_${VER}_i386.changes
+for deb in ../*.deb; do sudo reprepro -b /var/web/deb.swined.net includedeb unstable $deb && rm $deb || die failed to add deb to repository; done
+#sudo apt-get update
+#sudo apt-get install -y --force-yes lj2rss

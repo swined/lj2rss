@@ -1,0 +1,26 @@
+INPUT.username {
+    border: solid 1px #FF9933;
+    display: block;
+    background: url(userinfo.gif) no-repeat;
+    padding-left: 18px;
+    width: 210px;
+}
+INPUT.userpass {
+    border: solid 1px #FF9933;
+    display: block;
+    background: url(padlocked.gif) no-repeat;
+    padding-left: 18px;
+    width: 210px;
+}
+INPUT.btsubmit {
+    border: solid 1px #FF9933;
+    display: block;
+    width: 210px;
+    margin-top: 10px;
+}
+DIV.main {
+    background: url(logo.png) no-repeat;
+    padding-left: 138px;
+    width: 210px;
+    min-height: 128px;
+}
