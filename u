@@ -11,7 +11,7 @@ VER=0.0.2+git$REV
 export DEBEMAIL='Alexey Alexandrov <swined@gmail.com>'
 dch -v $VER "$REV" || die dch failed
 git commit -a -m 'auto commit' || die commit failed
-git-buildpackage -rfakeroot -us -uc -b || die build failed
+git-buildpackage -rfakeroot -us -uc -b --git-debian-branch local || die build failed
 OUT="lj2rss_${VER}_i386"
 sudo dpkg -i ../${OUT}.deb || die failed to install ../${OUT}.deb
 rm ../${OUT}.*
