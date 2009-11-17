@@ -7,7 +7,7 @@ die() {
 
 git commit -a -m 'auto commit' || die commit failed
 REV=$(date +%s)
-VER=0.0.1+git$REV
+VER=0.0.2+git$REV
 export DEBEMAIL='Alexey Alexandrov <swined@gmail.com>'
 dch -v $VER "$REV" || die dch failed
 git commit -a -m 'auto commit' || die commit failed
