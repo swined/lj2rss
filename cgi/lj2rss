@@ -7,24 +7,70 @@ use youtube;
 use CGI qw/param/;
 use XML::Writer;
 use LWP::UserAgent;
+use Cache::Memcached;
 use Cache::FastMmap;
+use ua;
+use Data::Dumper;
 
-my $ua = new LWP::UserAgent(cookie_jar => {});
+my $ua = new ua;
+ua::set_socks(9050);
 my ($ll, $hp) = (param('login') || '', param('hash') || '');
+my ($ep, $cm, $cf)= (0, 0, 0);
 
-my $cache = new Cache::FastMmap(
-    share_file => '/var/cache/lj2rss/cache',
-    expire_time => '1d',
-    unlink_on_exit => 0,
-    read_cb => sub {
-	my $w = $ua->get($_[1] . '?format=light')->content;
-	return if $w !~ /<blockquote>/s;
-	my $t = $1 if $w =~ /<title>(.*?)<\/title>/s;
-	local $_ = $w, s/^.*?<body >//s, s/<\/body>.*?$//s, 
-	    s/^(.*?)<hr \/>.*?<hr \/>/$1/s, s/<br style='clear: both' \/>.*?$//s;
-	{ subject => $t, content => $_ };
-    },
-);
+status();
+
+sub status {
+    $0 = sprintf '[lj2rss] u=%s, t=%s, ep=%s, cm=%s, cf=%s %s', $ll, time - $^T, $ep, $cm, $cf, shift;
+    return;
+}
+
+my $cache = new Cache::Memcached(servers => ['localhost:11211']) || die 'failed to connect to memcached';
+die 'cache not active' unless $cache->{active};
+die 'cache is readonly' if $cache->{readonly};
+
+sub fetch_entry {
+	my ($url) = @_;
+	$cm++;
+	status sprintf 'fetch_entry(%s)', $url;
+	    my $w = $ua->get($url . '?format=light')->content;
+	    die if $w !~ /<blockquote>/s;
+	    my $t = $1 if $w =~ /<title>(.*?)<\/title>/s;
+	    local $_ = $w, s/^.*?<body >//s, s/<\/body>.*?$//s, 
+		s/^(.*?)<hr \/>.*?<hr \/>/$1/s, s/<br style='clear: both' \/>.*?$//s;
+	return { subject => $t, content => $_ };
+}
+
+sub cached_get {
+	my ($url) = @_;
+              if (my $res = $cache->get($url)) {
+                        return $res;
+                } else {
+                        my $res = fetch_entry($url);
+                        status 'cache_set()';
+                        $cache->set($url, $res) || die 'failed to add to cache';
+                        status;
+                        return $res;
+                }
+}
+
+sub get_entry {
+	my ($url) = @_;
+	status sprintf 'get_entry(%s)', $url;
+	my $r = eval {
+		local $SIG{ALRM} = sub { die "alarm\n" };
+		alarm 60;
+		cached_get $url;
+	};
+        my $e = $@;
+        alarm 0;
+        status;
+        if ($e) {
+            $cf++;
+            return;
+        }  else {
+            return $r;
+        }
+}
 
 sub login {
     my $post = $ua->post(
@@ -36,7 +82,7 @@ sub login {
 	    expiration => 'short',
 	],
     );
-    return $post->status_line unless $post->is_success;
+    return 'api: ' . $post->status_line unless $post->is_success;
     my $s = { split /\n/, $post->content }->{ljsession};
     return sprintf 'no session<br><br>', $post->{content} unless $s;
     my $l = $s =~ /^.+?:(.+?:.+?):/ ? $1 : return sprintf 'bad session: %s', $s;
@@ -46,8 +92,12 @@ sub login {
 }
 
 sub links {
+    status 'links()';
     my $rs = $ua->get('http://www.livejournal.com/mobile/friends.bml?skip=' . param('skip'));
-    grep s/.*: <a href='(.*?)\?.*?'>.*/$1/, split '<b', $rs->content;
+    my @r = grep s/.*: <a href='(.*?)\?.*?'>.*/$1/, split '<b', $rs->content;
+    die $rs->content unless @r;
+    status;
+    return @r;
 }
 
 sub getJName {
@@ -77,26 +127,32 @@ $xml->dataElement($_, "${ll}'s friends") for ('title', 'description');
 $xml->dataElement('link', "http://www.livejournal.com/~$ll/friends");
 if (my $e = login) {
     addEntry($xml, "http://$ENV{HTTP_HOST}/?rand=" . rand, 'error', 
-	sprintf 'Could not log into your LJ account:<br>%s', $e);
+	sprintf 'Could not log into your LJ account:<br>%s<br><br><a href="http://swined.livejournal.com/391329.html">http://swined.livejournal.com/391329.html</a>', $e);
 } else {
-    foreach (links) {
-	my $et = eval { alarm 0; $cache->get($_); };
+	eval {
+		foreach (links) {
+			$ep++;
+			$xml->dataElement('debug', '', 'link' => $_);
+			my $et = get_entry($_) || next;
+			status 'postprocess()';
+			my $jn = getJName($_);
+			m|/(\d+)\.html$|;
+			my $id = $1;
+			if ($jn && $id) {
+				my $u = "http://lj2rss.swined.net/comments.png?user=${jn}&itemid=${id}";
+				$et->{content} .= "<br><a href='${_}'><img src='${u}'></a>";
+			}
+			$jn |= '***';
+#			status 'youtube::replace()';
+#			$et->{content} = youtube::replace($et->{content}, $ua);
+			addEntry($xml, $_, ($et->{subject} or $jn . ': untitled'), $et->{content});
+			status();
+		}
+	};
 	if (my $e = $@) {
-		next;
+		addEntry($xml, $e);
 	}
-	my $jn = getJName($_);
-       	m|/(\d+)\.html$|;
-	my $id = $1;
-	if ($jn && $id) {
-		my $u = "http://lj2rss.swined.net/comments.png?user=${jn}&itemid=${id}";
-		$et->{content} .= "<br><a href='${_}'><img src='${u}'></a>";
-	}
-	$jn |= '***';
-	$et->{content} = youtube::replace($et->{content});
-	addEntry($xml, $_, ($et->{subject} or $jn . ': untitled'), $et->{content});
-    }
 }
-$xml->dataElement('debug', '', 'time' => time - $^T);
 $xml->endTag;
 $xml->endTag;
 $xml->end;

@@ -1,20 +1,194 @@
-lj2rss (0.0.2+git1258463978) unstable; urgency=low
+lj2rss (0.0.1+svn1977+local) unstable; urgency=low
 
-  * 1258463978
+  * svn revision 1977
 
- -- Alexey Alexandrov <swined@gmail.com>  Tue, 17 Nov 2009 08:19:38 -0500
+ -- Alexey Alexandrov <swined@gmail.com>  Tue, 17 Nov 2009 08:07:08 -0500
 
-lj2rss (0.0.2+git1258463902) unstable; urgency=low
+lj2rss (0.0.1+svn1937+local) unstable; urgency=low
 
-  * 1258463902
+  * svn revision 1937
 
- -- Alexey Alexandrov <swined@gmail.com>  Tue, 17 Nov 2009 08:18:22 -0500
+ -- Alexey Alexandrov <swined@gmail.com>  Tue, 27 Oct 2009 15:32:39 -0400
 
-lj2rss (0.0.1+svn1874) unstable; urgency=low
+lj2rss (0.0.1+svn1936+local) unstable; urgency=low
 
-  * svn revision 1874
+  * svn revision 1936
 
- -- Alexey Alexandrov <swined@gmail.com>  Wed, 21 Oct 2009 16:44:22 +0700
+ -- Alexey Alexandrov <swined@gmail.com>  Tue, 27 Oct 2009 14:10:34 -0400
+
+lj2rss (0.0.1+svn1935+local) unstable; urgency=low
+
+  * svn revision 1935
+
+ -- Alexey Alexandrov <swined@gmail.com>  Tue, 27 Oct 2009 14:08:54 -0400
+
+lj2rss (0.0.1+svn1933+local) unstable; urgency=low
+
+  * svn revision 1933
+
+ -- Alexey Alexandrov <swined@gmail.com>  Tue, 27 Oct 2009 14:02:33 -0400
+
+lj2rss (0.0.1+svn1931+local) unstable; urgency=low
+
+  * svn revision 1931
+
+ -- Alexey Alexandrov <swined@gmail.com>  Tue, 27 Oct 2009 13:57:18 -0400
+
+lj2rss (0.0.1+svn1929+local) unstable; urgency=low
+
+  * svn revision 1929
+
+ -- Alexey Alexandrov <swined@gmail.com>  Tue, 27 Oct 2009 13:54:08 -0400
+
+lj2rss (0.0.1+svn1927+local) unstable; urgency=low
+
+  * svn revision 1927
+
+ -- Alexey Alexandrov <swined@gmail.com>  Tue, 27 Oct 2009 10:39:06 -0400
+
+lj2rss (0.0.1+svn1925+local) unstable; urgency=low
+
+  * svn revision 1925
+
+ -- Alexey Alexandrov <swined@gmail.com>  Tue, 27 Oct 2009 10:36:54 -0400
+
+lj2rss (0.0.1+svn1922+local) unstable; urgency=low
+
+  * svn revision 1922
+
+ -- Alexey Alexandrov <swined@gmail.com>  Tue, 27 Oct 2009 10:08:47 -0400
+
+lj2rss (0.0.1+svn1921+local) unstable; urgency=low
+
+  * svn revision 1921
+
+ -- Alexey Alexandrov <swined@gmail.com>  Tue, 27 Oct 2009 10:08:11 -0400
+
+lj2rss (0.0.1+svn1920+local) unstable; urgency=low
+
+  * svn revision 1920
+
+ -- Alexey Alexandrov <swined@gmail.com>  Sat, 24 Oct 2009 15:41:35 +0700
+
+lj2rss (0.0.1+svn1918+local) unstable; urgency=low
+
+  * svn revision 1918
+
+ -- Alexey Alexandrov <swined@gmail.com>  Sat, 24 Oct 2009 15:20:39 +0700
+
+lj2rss (0.0.1+svn1909+local) unstable; urgency=low
+
+  * svn revision 1909
+
+ -- Alexey Alexandrov <swined@gmail.com>  Thu, 22 Oct 2009 18:18:14 +0700
+
+lj2rss (0.0.1+svn1907+local) unstable; urgency=low
+
+  * svn revision 1907
+
+ -- Alexey Alexandrov <swined@gmail.com>  Thu, 22 Oct 2009 18:14:44 +0700
+
+lj2rss (0.0.1+svn1905+local) unstable; urgency=low
+
+  * svn revision 1905
+
+ -- Alexey Alexandrov <swined@gmail.com>  Thu, 22 Oct 2009 18:12:08 +0700
+
+lj2rss (0.0.1+svn1903+local) unstable; urgency=low
+
+  * svn revision 1903
+
+ -- Alexey Alexandrov <swined@gmail.com>  Thu, 22 Oct 2009 18:07:00 +0700
+
+lj2rss (0.0.1+svn1901+local) unstable; urgency=low
+
+  * svn revision 1901
+
+ -- Alexey Alexandrov <swined@gmail.com>  Thu, 22 Oct 2009 18:01:23 +0700
+
+lj2rss (0.0.1+svn1899+local) unstable; urgency=low
+
+  * svn revision 1899
+
+ -- Alexey Alexandrov <swined@gmail.com>  Thu, 22 Oct 2009 17:56:31 +0700
+
+lj2rss (0.0.1+svn1897+local) unstable; urgency=low
+
+  * svn revision 1897
+
+ -- Alexey Alexandrov <swined@gmail.com>  Thu, 22 Oct 2009 17:52:50 +0700
+
+lj2rss (0.0.1+svn1895+local) unstable; urgency=low
+
+  * svn revision 1895
+
+ -- Alexey Alexandrov <swined@gmail.com>  Thu, 22 Oct 2009 17:02:25 +0700
+
+lj2rss (0.0.1+svn1893+local) unstable; urgency=low
+
+  * svn revision 1893
+
+ -- Alexey Alexandrov <swined@gmail.com>  Thu, 22 Oct 2009 16:52:37 +0700
+
+lj2rss (0.0.1+svn1891+local) unstable; urgency=low
+
+  * svn revision 1891
+
+ -- Alexey Alexandrov <swined@gmail.com>  Thu, 22 Oct 2009 16:44:12 +0700
+
+lj2rss (0.0.1+svn1889+local) unstable; urgency=low
+
+  * svn revision 1889
+
+ -- Alexey Alexandrov <swined@gmail.com>  Wed, 21 Oct 2009 19:56:10 +0700
+
+lj2rss (0.0.1+svn1887+local) unstable; urgency=low
+
+  * svn revision 1887
+
+ -- Alexey Alexandrov <swined@gmail.com>  Wed, 21 Oct 2009 19:52:53 +0700
+
+lj2rss (0.0.1+svn1885+local) unstable; urgency=low
+
+  * svn revision 1885
+
+ -- Alexey Alexandrov <swined@gmail.com>  Wed, 21 Oct 2009 19:47:36 +0700
+
+lj2rss (0.0.1+svn1882+local) unstable; urgency=low
+
+  * svn revision 1882
+
+ -- Alexey Alexandrov <swined@gmail.com>  Wed, 21 Oct 2009 18:01:09 +0700
+
+lj2rss (0.0.1+svn1880+local) unstable; urgency=low
+
+  * svn revision 1880
+
+ -- Alexey Alexandrov <swined@gmail.com>  Wed, 21 Oct 2009 17:01:15 +0700
+
+lj2rss (0.0.1+svn1878+local) unstable; urgency=low
+
+  * svn revision 1878
+
+ -- Alexey Alexandrov <swined@gmail.com>  Wed, 21 Oct 2009 16:51:34 +0700
+
+lj2rss (0.0.1+svn1876+local) unstable; urgency=low
+
+  * svn revision 1876
+
+ -- Alexey Alexandrov <swined@gmail.com>  Wed, 21 Oct 2009 16:46:47 +0700
+
+lj2rss (0.0.1+svn1751+local) unstable; urgency=low
+
+  * svn revision 1751
+
+ -- Alexey Alexandrov <swined@gmail.com>  Fri, 21 Aug 2009 14:01:31 +0700
+
+lj2rss (0.0.1+svn1749) unstable; urgency=low
+
+  * svn revision 1749
+
+ -- Alexey Alexandrov <swined@gmail.com>  Fri, 21 Aug 2009 13:58:07 +0700
 
 lj2rss (0.0.1+svn1719) unstable; urgency=low
 

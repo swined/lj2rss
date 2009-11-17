@@ -6,6 +6,7 @@ use LWP::Simple;
 
 sub replace {
 	my ($text) = @_;
+	return unless $text;
 	while ($text =~ m|<iframe src="(http://lj-toys.com/[^""]*)"[^>]*></iframe>|si) {
 		my ($before, $after, $url) = ($`, $', $1);
 		$url =~ s/&amp;/&/gsi;

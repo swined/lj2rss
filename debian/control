@@ -7,5 +7,5 @@ Standards-Version: 3.7.2
 
 Package: lj2rss
 Architecture: any
-Depends: apache2, perl, libcache-fastmmap-perl, libxml-writer-perl, libcgi-perl | libcgi-pm-perl, libwww-perl
+Depends: apache2, perl, libcache-memcached-perl, memcached, libxml-writer-perl, libcgi-perl | libcgi-pm-perl, libwww-perl
 Description: livejournal to rss

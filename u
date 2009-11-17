@@ -12,7 +12,6 @@ export DEBEMAIL='Alexey Alexandrov <swined@gmail.com>'
 dch -v $VER "$REV" || die dch failed
 git commit -a -m 'auto commit' || die commit failed
 git-buildpackage -rfakeroot -us -uc -b || die build failed
-rm ../lj2rss_${VER}_i386.changes ../lj2rss_${VER}_i386.build
-#for deb in ../*.deb; do sudo reprepro -b /var/web/deb.swined.net includedeb unstable $deb && rm $deb || die failed to add deb to repository; done
-#sudo apt-get update
-#sudo apt-get install -y --force-yes lj2rss
+OUT="lj2rss_${VER}_i386"
+sudo dpkg -i ../${OUT}.deb || die failed to install ../${OUT}.deb
+rm ../${OUT}.*
