@@ -118,6 +118,11 @@ sub addEntry {
     $xml->endTag;
 }
 
+my @messages = (
+	'if you see this, lj is probably fighting against it\'s own users again',
+	'feel free to contact <a href=\'http://www.livejournal.com/support/submit.bml\'>support</a> if you don\'t want to see this message',
+);
+
 print "content-type: text/xml; charset=utf-8\n\n";
 
 my $xml = new XML::Writer(OUTPUT => *STDOUT);
@@ -127,7 +132,7 @@ $xml->dataElement($_, "${ll}'s friends") for ('title', 'description');
 $xml->dataElement('link', "http://www.livejournal.com/~$ll/friends");
 if (my $e = login) {
     addEntry($xml, "http://$ENV{HTTP_HOST}/?rand=" . rand, 'error', 
-	sprintf 'Could not log into your LJ account:<br>%s<br><br><a href="http://swined.livejournal.com/391329.html">http://swined.livejournal.com/391329.html</a>', $e);
+	sprintf 'Could not log into your LJ account:<br>%s<br><br>%s', $e, $messages[int rand scalar @messages]);
 } else {
 	eval {
 		foreach (links) {

@@ -24,3 +24,7 @@ DIV.main {
     width: 210px;
     min-height: 128px;
 }
+DIV.foot {
+    font-size: 70%;
+    color: #CACACA;
+}
