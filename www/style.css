@@ -25,10 +25,9 @@ DIV.main {
     min-height: 128px;
 }
 DIV.foot {
-    font-size: 70%;
     color: #CACACA;
 }
-A DIV.foot {
+DIV.foot A {
     color: #CACACA;
 }
 IMG {
