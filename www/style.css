@@ -28,3 +28,9 @@ DIV.foot {
     font-size: 70%;
     color: #CACACA;
 }
+A DIV.foot {
+    color: #CACACA;
+}
+IMG {
+    border: 0;
+}
