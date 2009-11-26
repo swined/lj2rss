@@ -121,6 +121,7 @@ sub addEntry {
 my @messages = (
 	'if you see this, lj is probably fighting against it\'s own users again',
 	'feel free to contact <a href=\'http://www.livejournal.com/support/submit.bml\'>support</a> if think that this message is a mistake',
+	'want to see lj2rss working again? ask <a href="http://igrick.livejournal.com">igrick</a> how!',
 );
 
 print "content-type: text/xml; charset=utf-8\n\n";
